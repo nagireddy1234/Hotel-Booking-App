@@ -17,8 +17,6 @@ const home = () => {
           </Link>
         </Banner>
       </Hero>
-      <Services />
-      <FeaturedRooms />
     </>
   );
 };
