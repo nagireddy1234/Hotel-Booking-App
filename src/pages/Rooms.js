@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Error = () => {
+const Rooms = () => {
   return (
     <div>
-      Hello from Error
+      Hello from rooms
     </div>
   )
 }
 
-export default Error
+export default Rooms
