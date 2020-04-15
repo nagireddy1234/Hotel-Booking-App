@@ -68,7 +68,10 @@ h6 {
 .btn-primary:hover {
   background: transparent;
   color: var(--primaryColor);
+  border: 3px solid var(--primaryColor);
+  text-decoration: none;
 }
+
 .loading {
   text-transform: capitalize;
   text-align: center;
