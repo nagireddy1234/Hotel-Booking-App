@@ -13,18 +13,34 @@ const RoomContext =React.createContext();
   }
   
   componentDidMount() {
-     this.getData();
+    //  this.getData();
+
+     let rooms = this.formatData(items);
+     let featuredRooms = rooms.filter(room => room.featured===true)
+     this.setState({
+       rooms,
+       featuredRooms,
+       loading:false,
+       sortedRooms:rooms 
+     })
+    //  console.log(rooms)
   }
+
+  // getData = () => {
+  //   return "Hello"
+  // }
 
   formatData(items) {
     let tempItems = items.map(item => {
       let id = item.sys.id;
       let images = item.fields.images.map(image => image.fields.file.url);
 
-      let room = { ...item.fields, images, id };
-      return room;
+      let rooms = { ...item.fields, images, id };
+      return rooms;
     });
-    return tempItems;
+    // console.log(tempItems)
+     return tempItems;
+   
   }
 
   render() {

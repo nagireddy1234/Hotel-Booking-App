@@ -100,6 +100,9 @@ h6 {
   background: var(--offWhite);
   z-index: 1;
 }
+.nav-center{
+  width: 100%;
+}
 .nav-header {
   display: flex;
   justify-content: space-between;
