@@ -40,13 +40,19 @@ const RoomContext =React.createContext();
     });
     // console.log(tempItems)
      return tempItems;
-   
   }
 
+  getRoom = (slug) =>{
+    let tempRooms = [...this.state.rooms]
+    let room = tempRooms.find(room => room.slug===slug)
+    return room
+  }
   render() {
+    // console.log( this.getRoom)
     return (
       <RoomContext.Provider value={{
         ...this.state,
+         getRoom:this.getRoom
       }}>
           {this.props.children}
       </RoomContext.Provider>
