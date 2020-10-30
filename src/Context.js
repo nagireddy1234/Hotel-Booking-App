@@ -10,31 +10,36 @@ const RoomContext =React.createContext();
     sortedRooms: [],
     featuredRooms: [],
     loading: true,
+    type: "all",
+    capacity: 1,
+    price: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    minSize: 0,
+    maxSize: 0,
+    breakfast: false,
+    pets: false
   }
+
   
   componentDidMount() {
-    //  this.getData();
-
      let rooms = this.formatData(items);
      let featuredRooms = rooms.filter(room => room.featured===true)
+     let maxPrice = Math.max(...rooms.map(item => item.price)); 
+     let maxSize = Math.max(...rooms.map(item => item.size));
      this.setState({
        rooms,
        featuredRooms,
        loading:false,
-       sortedRooms:rooms 
+       sortedRooms:rooms,
+       price:maxPrice,
+       maxSize
      })
-    //  console.log(rooms)
   }
-
-  // getData = () => {
-  //   return "Hello"
-  // }
-
   formatData(items) {
     let tempItems = items.map(item => {
       let id = item.sys.id;
       let images = item.fields.images.map(image => image.fields.file.url);
-
       let rooms = { ...item.fields, images, id };
       return rooms;
     });
@@ -60,6 +65,16 @@ const RoomContext =React.createContext();
   }
 }
 
-const RoomConsumer =RoomContext.Consumer;
+const RoomConsumer = RoomContext.Consumer;
 
-export {RoomProvider, RoomContext, RoomConsumer};
+export function withRoomConsumer(Component) {
+  return function ConsumerWrapper(props) {
+    return (
+      <RoomConsumer>
+        {value => <Component {...props} context={value} />}
+      </RoomConsumer>
+    );
+  };
+}
+
+export { RoomProvider, RoomConsumer, RoomContext };

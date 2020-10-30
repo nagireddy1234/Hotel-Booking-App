@@ -2,10 +2,12 @@ import React from 'react';
 import Hero from '../Components/Hero';
 import Banner from "../Components/Banner";
 import { Link } from "react-router-dom";
+import Title from '../Components/Title';
+// import RoomContainer from '../Components/RoomsContainer';
 
 const Rooms = () => {
   return (
-    <div>
+    <>
       <Hero hero="roomsHero">
         <Banner title="our rooms">
           <Link to="/" className="btn-primary">
@@ -13,8 +15,9 @@ const Rooms = () => {
           </Link>
         </Banner>
       </Hero>
-     
-    </div>
+      <Title title="Search Rooms" />
+      {/* <RoomContainer /> */}
+    </>
   )
 }
 
